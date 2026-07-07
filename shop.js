@@ -51,7 +51,13 @@ shopContainer.innerHTML += `
 
 
 <div class="product-card">
+<button
 
+onclick='addWishlist(${JSON.stringify(product)})'>
+
+❤️
+
+</button>
 
 <img
 
