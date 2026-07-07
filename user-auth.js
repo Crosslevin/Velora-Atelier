@@ -452,3 +452,21 @@ alert(
 
 
 }
+export {
+
+
+signupUser,
+
+loginUser,
+
+logoutUser,
+
+googleLogin
+
+
+};
+
+
+console.log(
+"User Authentication Ready ✔"
+);
