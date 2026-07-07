@@ -535,3 +535,69 @@ function renderCart() {
     cartTotal.textContent = `₹${total}`;
 
 }
+// ==========================================
+// VELORA ATELIER SHOP.JS
+// PART 2A.2
+// Quantity Controls
+// ==========================================
+
+
+// =============================
+// Quantity Events
+// =============================
+
+cartItems.addEventListener("click", (e) => {
+
+    // Increase Quantity
+    if (e.target.classList.contains("plus-btn")) {
+
+        const index = Number(
+            e.target.dataset.index
+        );
+
+        cart[index].quantity++;
+
+        saveCart();
+
+        updateCounts();
+
+        renderCart();
+
+    }
+
+
+    // Decrease Quantity
+    if (e.target.classList.contains("minus-btn")) {
+
+        const index = Number(
+            e.target.dataset.index
+        );
+
+        if (cart[index].quantity > 1) {
+
+            cart[index].quantity--;
+
+        } else {
+
+            cart.splice(index, 1);
+
+        }
+
+        saveCart();
+
+        updateCounts();
+
+        renderCart();
+
+    }
+
+});
+
+
+// =============================
+// Auto Render on Load
+// =============================
+
+renderCart();
+
+console.log("Quantity Controls Ready");
