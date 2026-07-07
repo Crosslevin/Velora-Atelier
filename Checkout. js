@@ -1,0 +1,479 @@
+// ==========================================
+// VELORA ATELIER
+// checkout.js
+// PART 1A
+// Cart Load + Order Render
+// ==========================================
+
+
+// =============================
+// Get Cart Data
+// =============================
+
+let checkoutCart = JSON.parse(
+    localStorage.getItem("cart")
+) || [];
+
+
+// =============================
+// DOM Elements
+// =============================
+
+const orderItems =
+document.getElementById("orderItems");
+
+const subtotalPrice =
+document.getElementById("subtotalPrice");
+
+const shippingPrice =
+document.getElementById("shippingPrice");
+
+const grandTotal =
+document.getElementById("grandTotal");
+
+
+// =============================
+// Render Order Items
+// =============================
+
+function renderOrderItems(){
+
+    if(!orderItems) return;
+
+
+    if(checkoutCart.length === 0){
+
+        orderItems.innerHTML = `
+
+        <div class="empty-order">
+
+            <p>
+            Your cart is empty.
+            </p>
+
+        </div>
+
+        `;
+
+        updateCheckoutTotal();
+
+        return;
+
+    }
+
+
+    let html = "";
+
+
+    checkoutCart.forEach(item=>{
+
+
+        html += `
+
+        <div class="order-item">
+
+
+            <img 
+            src="${item.image}"
+            alt="${item.name}">
+
+
+            <div>
+
+                <h4>
+                ${item.name}
+                </h4>
+
+                <p>
+                Qty: ${item.quantity}
+                </p>
+
+                <strong>
+                ₹${item.price * item.quantity}
+                </strong>
+
+            </div>
+
+
+        </div>
+
+        `;
+
+
+    });
+
+
+    orderItems.innerHTML = html;
+
+
+    updateCheckoutTotal();
+
+}
+
+
+
+// =============================
+// Calculate Subtotal
+// =============================
+
+function calculateSubtotal(){
+
+    return checkoutCart.reduce(
+
+    (total,item)=>{
+
+        return total +
+        (item.price * item.quantity);
+
+    },0);
+
+}
+
+
+
+// =============================
+// Initial Load
+// =============================
+
+renderOrderItems();
+
+
+console.log(
+"Checkout Cart Loaded ✔"
+);
+// ==========================================
+// VELORA ATELIER
+// checkout.js
+// PART 1B
+// Total Calculation + Shipping
+// ==========================================
+
+
+// =============================
+// Delivery Elements
+// =============================
+
+const deliveryOptions =
+document.querySelectorAll(
+'input[name="delivery"]'
+);
+
+
+// =============================
+// Calculate Shipping
+// =============================
+
+function calculateShipping(){
+
+    const selectedDelivery =
+    document.querySelector(
+    'input[name="delivery"]:checked'
+    );
+
+
+    if(!selectedDelivery){
+
+        return 0;
+
+    }
+
+
+    if(
+    selectedDelivery.value === "express"
+    ){
+
+        return 199;
+
+    }
+
+
+    return 0;
+
+}
+
+
+
+// =============================
+// Update Checkout Total
+// =============================
+
+function updateCheckoutTotal(){
+
+    const subtotal =
+    calculateSubtotal();
+
+
+    const shipping =
+    calculateShipping();
+
+
+    const total =
+    subtotal + shipping;
+
+
+
+    if(subtotalPrice){
+
+        subtotalPrice.textContent =
+        `₹${subtotal.toLocaleString("en-IN")}`;
+
+    }
+
+
+
+    if(shippingPrice){
+
+        shippingPrice.textContent =
+        shipping === 0
+        ? "Free"
+        : `₹${shipping}`;
+
+    }
+
+
+
+    if(grandTotal){
+
+        grandTotal.textContent =
+        `₹${total.toLocaleString("en-IN")}`;
+
+    }
+
+}
+
+
+
+// =============================
+// Delivery Change Event
+// =============================
+
+deliveryOptions.forEach(option=>{
+
+
+    option.addEventListener(
+    "change",
+    ()=>{
+
+        updateCheckoutTotal();
+
+    });
+
+
+});
+
+
+
+// Initial Calculation
+
+updateCheckoutTotal();
+
+
+console.log(
+"Checkout Total System Ready ✔"
+);
+// ==========================================
+// VELORA ATELIER
+// checkout.js
+// PART 1C
+// Coupon System
+// ==========================================
+
+
+// =============================
+// Coupon Elements
+// =============================
+
+const couponInput =
+document.getElementById("couponCode");
+
+const applyCouponBtn =
+document.getElementById("applyCoupon");
+
+const discountPrice =
+document.getElementById("discountPrice");
+
+
+// =============================
+// Coupon Variables
+// =============================
+
+let discountAmount = 0;
+
+let appliedCoupon = "";
+
+
+
+// =============================
+// Apply Coupon
+// =============================
+
+if(applyCouponBtn){
+
+applyCouponBtn.addEventListener(
+"click",
+()=>{
+
+
+    const code =
+    couponInput.value
+    .trim()
+    .toUpperCase();
+
+
+
+    if(code === "WELCOME10"){
+
+
+        appliedCoupon = code;
+
+
+        const subtotal =
+        calculateSubtotal();
+
+
+
+        discountAmount =
+        Math.round(
+        subtotal * 0.10
+        );
+
+
+
+        alert(
+        "Coupon Applied! 10% Discount Added."
+        );
+
+
+    }
+
+    else{
+
+
+        discountAmount = 0;
+
+        appliedCoupon = "";
+
+
+        alert(
+        "Invalid Coupon Code"
+        );
+
+
+    }
+
+
+
+    updateDiscount();
+
+    updateCheckoutTotal();
+
+
+});
+
+}
+
+
+
+// =============================
+// Update Discount Display
+// =============================
+
+function updateDiscount(){
+
+
+    if(discountPrice){
+
+
+        discountPrice.textContent =
+
+        discountAmount > 0
+
+        ? `-₹${discountAmount.toLocaleString("en-IN")}`
+
+        : "₹0";
+
+
+    }
+
+
+}
+
+
+
+// =============================
+// Override Total Calculation
+// =============================
+
+const oldUpdateCheckoutTotal =
+updateCheckoutTotal;
+
+
+updateCheckoutTotal = function(){
+
+
+    const subtotal =
+    calculateSubtotal();
+
+
+
+    const shipping =
+    calculateShipping();
+
+
+
+    const total =
+    subtotal +
+    shipping -
+    discountAmount;
+
+
+
+    if(subtotalPrice){
+
+        subtotalPrice.textContent =
+        `₹${subtotal.toLocaleString("en-IN")}`;
+
+    }
+
+
+
+    if(shippingPrice){
+
+        shippingPrice.textContent =
+        shipping === 0
+        ? "Free"
+        : `₹${shipping}`;
+
+    }
+
+
+
+    if(discountPrice){
+
+        discountPrice.textContent =
+        discountAmount > 0
+        ? `-₹${discountAmount.toLocaleString("en-IN")}`
+        : "₹0";
+
+    }
+
+
+
+    if(grandTotal){
+
+        grandTotal.textContent =
+        `₹${Math.max(total,0).toLocaleString("en-IN")}`;
+
+    }
+
+
+};
+
+
+
+updateCheckoutTotal();
+
+
+console.log(
+"Coupon System Ready ✔"
+);
