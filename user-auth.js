@@ -26,6 +26,20 @@ from
 
 import {
 
+GoogleAuthProvider,
+
+signInWithPopup
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+
+
+import {
+
 doc,
 
 setDoc
@@ -35,18 +49,6 @@ setDoc
 from
 
 "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
-
-
-
-import {
-
-auth,
-
-db
-
-}
-
-from "./firebase-config.js";
 
 
 
@@ -322,3 +324,131 @@ logoutUser
 console.log(
 "User Authentication Ready ✔"
 );
+// =============================
+// GOOGLE LOGIN
+// =============================
+
+
+async function googleLogin(){
+
+
+try{
+
+
+const provider =
+
+new GoogleAuthProvider();
+
+
+
+const result =
+
+await signInWithPopup(
+
+auth,
+
+provider
+
+);
+
+
+
+const user =
+result.user;
+
+
+
+await setDoc(
+
+doc(
+
+db,
+
+"users",
+
+user.uid
+
+),
+
+{
+
+
+name:
+
+user.displayName,
+
+
+email:
+
+user.email,
+
+
+photo:
+
+user.photoURL,
+
+
+loginType:
+
+"Google",
+
+
+createdAt:
+
+new Date()
+
+
+},
+
+
+{
+
+merge:true
+
+}
+
+);
+
+
+
+
+
+localStorage.setItem(
+
+"userEmail",
+
+user.email
+
+);
+
+
+
+
+
+window.location.href =
+"shop.html";
+
+
+
+}
+
+
+
+catch(error){
+
+
+console.log(
+error.message
+);
+
+
+alert(
+"Google Login Failed"
+);
+
+
+}
+
+
+
+}
