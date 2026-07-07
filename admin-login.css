@@ -1,0 +1,353 @@
+/* ==========================================
+   VELORA ATELIER
+   admin-login.css
+   Premium Admin Login UI
+========================================== */
+
+
+@import url(
+'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap'
+);
+
+
+
+*{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+}
+
+
+
+:root{
+
+    --gold:#D4AF37;
+
+    --black:#080808;
+
+    --card:#141414;
+
+    --white:#fff;
+
+    --gray:#aaa;
+
+}
+
+
+
+body{
+
+    min-height:100vh;
+
+    background:
+
+    radial-gradient(
+    circle at top,
+    rgba(212,175,55,.18),
+    transparent 40%
+    ),
+
+    #080808;
+
+
+    font-family:'Poppins',sans-serif;
+
+    color:white;
+
+}
+
+
+
+/* ===========================
+      LOGIN SECTION
+=========================== */
+
+
+.login-section{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:20px;
+
+}
+
+
+
+/* ===========================
+      LOGIN BOX
+=========================== */
+
+
+.login-box{
+
+    width:420px;
+
+    padding:45px;
+
+    background:
+
+    rgba(255,255,255,.05);
+
+
+    backdrop-filter:blur(20px);
+
+
+    border:
+
+    1px solid rgba(212,175,55,.25);
+
+
+    border-radius:25px;
+
+
+    box-shadow:
+
+    0 25px 60px rgba(0,0,0,.5);
+
+
+    animation:
+
+    fadeIn .6s ease;
+
+}
+
+
+
+@keyframes fadeIn{
+
+
+from{
+
+opacity:0;
+
+transform:translateY(30px);
+
+}
+
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+
+}
+
+
+
+/* ===========================
+      BRAND
+=========================== */
+
+
+.brand{
+
+    text-align:center;
+
+    margin-bottom:35px;
+
+}
+
+
+
+.brand h1{
+
+    font-family:'Playfair Display',serif;
+
+    font-size:38px;
+
+    color:var(--gold);
+
+}
+
+
+
+.brand p{
+
+    color:#ccc;
+
+    margin-top:8px;
+
+}
+
+
+
+
+/* ===========================
+      FORM
+=========================== */
+
+
+form label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    color:#ddd;
+
+}
+
+
+
+form input{
+
+    width:100%;
+
+    padding:15px;
+
+    margin-bottom:22px;
+
+
+    background:#111;
+
+
+    color:white;
+
+
+    border:
+
+    1px solid rgba(255,255,255,.12);
+
+
+    border-radius:12px;
+
+
+    outline:none;
+
+
+    transition:.3s;
+
+}
+
+
+
+form input:focus{
+
+    border-color:var(--gold);
+
+}
+
+
+
+
+
+/* ===========================
+      LOGIN BUTTON
+=========================== */
+
+
+.login-btn{
+
+
+    width:100%;
+
+
+    padding:15px;
+
+
+    border:none;
+
+
+    border-radius:50px;
+
+
+    background:var(--gold);
+
+
+    color:#000;
+
+
+    font-weight:700;
+
+
+    cursor:pointer;
+
+
+    transition:.3s;
+
+
+}
+
+
+
+.login-btn:hover{
+
+
+    transform:translateY(-3px);
+
+
+    box-shadow:
+
+    0 10px 25px rgba(212,175,55,.35);
+
+
+}
+
+
+
+/* ===========================
+      SECURITY TEXT
+=========================== */
+
+
+.security-text{
+
+
+    text-align:center;
+
+
+    margin-top:25px;
+
+
+    color:#888;
+
+
+    font-size:13px;
+
+
+}
+
+
+
+
+/* ===========================
+      MOBILE
+=========================== */
+
+
+@media(max-width:500px){
+
+
+
+.login-box{
+
+    width:100%;
+
+    padding:30px;
+
+}
+
+
+
+.brand h1{
+
+    font-size:30px;
+
+}
+
+
+}
