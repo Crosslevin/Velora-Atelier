@@ -1,0 +1,193 @@
+// ==========================================
+// VELORA ATELIER
+// profile.js
+// User Profile System
+// ==========================================
+
+
+
+import {
+
+onAuthStateChanged,
+
+signOut
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+
+
+import {
+
+doc,
+
+getDoc
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+
+
+import {
+
+auth,
+
+db
+
+}
+
+from "./firebase-config.js";
+
+
+
+
+
+const userPhoto =
+document.getElementById(
+"userPhoto"
+);
+
+
+const userName =
+document.getElementById(
+"userName"
+);
+
+
+const userEmail =
+document.getElementById(
+"userEmail"
+);
+
+
+const logoutBtn =
+document.getElementById(
+"logoutBtn"
+);
+
+
+
+
+
+// =============================
+// LOAD PROFILE
+// =============================
+
+
+onAuthStateChanged(
+
+auth,
+
+async(user)=>{
+
+
+if(user){
+
+
+
+const userDoc =
+
+await getDoc(
+
+doc(
+
+db,
+
+"users",
+
+user.uid
+
+)
+
+);
+
+
+
+
+
+if(userDoc.exists()){
+
+
+const data =
+userDoc.data();
+
+
+
+userName.innerText =
+data.name || "User";
+
+
+
+userEmail.innerText =
+data.email;
+
+
+
+if(data.photo){
+
+
+userPhoto.src =
+data.photo;
+
+
+}
+
+
+
+}
+
+
+
+}
+
+
+
+else{
+
+
+window.location.href =
+"login.html";
+
+
+}
+
+
+
+});
+
+
+
+
+
+
+
+
+// =============================
+// LOGOUT
+// =============================
+
+
+logoutBtn.onclick = async()=>{
+
+
+await signOut(auth);
+
+
+
+localStorage.removeItem(
+"userEmail"
+);
+
+
+
+window.location.href =
+"login.html";
+
+
+};
