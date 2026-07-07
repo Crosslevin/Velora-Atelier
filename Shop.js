@@ -677,3 +677,133 @@ renderCart = function () {
 updateCartTotal();
 
 console.log("Remove Item & Live Total Ready");
+// ==========================================
+// VELORA ATELIER SHOP.JS
+// PART 2A.4
+// LocalStorage + Clear Cart
+// ==========================================
+
+
+// =============================
+// Create Clear Cart Button
+// =============================
+
+const clearCartBtn = document.createElement("button");
+
+clearCartBtn.id = "clearCart";
+
+clearCartBtn.textContent = "Clear Cart";
+
+clearCartBtn.className = "hero-btn";
+
+if(document.querySelector(".sidebar-footer")){
+
+document
+.querySelector(".sidebar-footer")
+.appendChild(clearCartBtn);
+
+}
+
+
+
+// =============================
+// Clear Cart
+// =============================
+
+clearCartBtn.addEventListener("click",()=>{
+
+if(cart.length===0){
+
+alert("Cart is already empty.");
+
+return;
+
+}
+
+const confirmClear=
+confirm(
+"Remove all products from cart?"
+);
+
+if(!confirmClear) return;
+
+cart=[];
+
+saveCart();
+
+updateCounts();
+
+renderCart();
+
+});
+
+
+
+// =============================
+// Restore Cart
+// =============================
+
+function restoreCart(){
+
+const savedCart=
+localStorage.getItem("cart");
+
+if(savedCart){
+
+cart=
+JSON.parse(savedCart);
+
+}else{
+
+cart=[];
+
+}
+
+updateCounts();
+
+renderCart();
+
+}
+
+
+
+// =============================
+// Checkout Button
+// =============================
+
+const checkoutBtn=
+document.querySelector(
+".sidebar-footer a"
+);
+
+if(checkoutBtn){
+
+checkoutBtn.addEventListener(
+"click",
+(e)=>{
+
+if(cart.length===0){
+
+e.preventDefault();
+
+alert(
+"Your cart is empty."
+);
+
+}
+
+});
+
+}
+
+
+
+// =============================
+// Initialize
+// =============================
+
+restoreCart();
+
+console.log(
+"Cart Sidebar Ready ✔"
+);
