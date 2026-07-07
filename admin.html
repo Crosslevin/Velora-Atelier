@@ -40,8 +40,15 @@ placeholder="Dress Name">
 placeholder="Category">
 
 
-<input id="image"
-placeholder="Image URL">
+<input
+
+type="file"
+
+id="productImageFile"
+
+accept="image/*"
+
+>
 
 
 
@@ -80,14 +87,14 @@ Loading...
 </div>
 
 
+<script 
+type="module"
+src="firebase-config.js">
+</script>
 
-<script type="module" src="admin.js"></script>
 
 
 </body>
 
 </html>
-<script 
-type="module"
-src="firebase-config.js">
-</script>
+
