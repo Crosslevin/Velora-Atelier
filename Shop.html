@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Velora Atelier | Shop</title>
+
+    <meta name="description"
+        content="Shop luxury fashion collections from Velora Atelier.">
+
+    <meta name="keywords"
+        content="fashion, luxury, designer, bridal, clothing, boutique">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="shop.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+
+<header class="shop-header">
+
+    <div class="logo">
+        Velora Atelier
+    </div>
+
+    <nav>
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="shop.html" class="active">
+            Shop
+        </a>
+
+        <a href="collections.html">
+            Collections
+        </a>
+
+        <a href="gallery.html">
+            Gallery
+        </a>
+
+        <a href="contact.html">
+            Contact
+        </a>
+
+    </nav>
+
+    <div class="header-icons">
+
+        <button id="searchBtn">
+            🔍
+        </button>
+
+        <button id="wishlistBtn">
+            ❤️
+            <span id="wishlistCount">
+                0
+            </span>
+        </button>
+
+        <button id="cartBtn">
+
+            🛒
+
+            <span id="cartCount">
+                0
+            </span>
+
+        </button>
+
+    </div>
+
+</header>
+
+<section class="shop-hero">
+
+    <div class="overlay"></div>
+
+    <div class="hero-content">
+
+        <h1>
+
+            Luxury Fashion
+
+        </h1>
+
+        <p>
+
+            Discover timeless designer collections crafted with elegance.
+
+        </p>
+
+        <a href="#products" class="hero-btn">
+
+            Shop Now
+
+        </a>
+
+    </div>
+
+</section>
+<!-- ========================= -->
+<!-- SHOP TOOLBAR -->
+<!-- ========================= -->
+
+<section class="shop-toolbar">
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search products...">
+
+    </div>
+
+    <div class="toolbar-right">
+
+        <select id="categoryFilter">
+
+            <option value="all">
+                All Categories
+            </option>
+
+            <option value="bridal">
+                Bridal Couture
+            </option>
+
+            <option value="evening">
+                Evening Wear
+            </option>
+
+            <option value="casual">
+                Casual Collection
+            </option>
+
+            <option value="accessories">
+                Accessories
+            </option>
+
+        </select>
+
+        <select id="sortProducts">
+
+            <option value="default">
+                Sort By
+            </option>
+
+            <option value="low-high">
+                Price: Low to High
+            </option>
+
+            <option value="high-low">
+                Price: High to Low
+            </option>
+
+            <option value="newest">
+                New Arrivals
+            </option>
+
+            <option value="popular">
+                Most Popular
+            </option>
+
+        </select>
+
+    </div>
+
+</section>
+
+<!-- ========================= -->
+<!-- SHOP INTRO -->
+<!-- ========================= -->
+
+<section class="shop-intro">
+
+    <h2>
+        Explore Our Collection
+    </h2>
+
+    <p>
+        From handcrafted bridal couture to elegant evening wear,
+        discover premium designs created for every special occasion.
+    </p>
+
+</section>
+
+<!-- ========================= -->
+<!-- PRODUCT SECTION START -->
+<!-- ========================= -->
+
+<section id="products" class="products-section">
+
+    <div class="section-header">
+
+        <h2>
+            Featured Products
+        </h2>
+
+        <p id="productCount">
+            Showing 12 Products
+        </p>
+
+    </div>
+
+    <div id="productGrid" class="product-grid">
+      <!-- ========================= -->
+<!-- PRODUCT CARD 1 -->
+<!-- ========================= -->
+
+<div class="product-card" data-category="bridal" data-price="7999">
+
+    <div class="product-image">
+
+        <img src="assets/images/products/bridal-1.jpg"
+             alt="Luxury Bridal Gown">
+
+        <span class="badge">
+            New
+        </span>
+
+    </div>
+
+    <div class="product-info">
+
+        <h3>Luxury Bridal Gown</h3>
+
+        <div class="rating">
+            ★★★★★
+        </div>
+
+        <p class="price">
+            ₹7,999
+        </p>
+
+        <div class="product-buttons">
+
+            <button class="wishlist-btn">
+                ❤️ Wishlist
+            </button>
+
+            <button class="cart-btn">
+                Add to Cart
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- PRODUCT CARD 2 -->
+<!-- ========================= -->
+
+<div class="product-card" data-category="evening" data-price="4999">
+
+    <div class="product-image">
+
+        <img src="assets/images/products/evening-1.jpg"
+             alt="Evening Dress">
+
+    </div>
+
+    <div class="product-info">
+
+        <h3>Elegant Evening Dress</h3>
+
+        <div class="rating">
+            ★★★★☆
+        </div>
+
+        <p class="price">
+            ₹4,999
+        </p>
+
+        <div class="product-buttons">
+
+            <button class="wishlist-btn">
+                ❤️ Wishlist
+            </button>
+
+            <button class="cart-btn">
+                Add to Cart
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- PRODUCT CARD 3 -->
+<!-- ========================= -->
+
+<div class="product-card" data-category="casual" data-price="2499">
+
+    <div class="product-image">
+
+        <img src="assets/images/products/casual-1.jpg"
+             alt="Casual Outfit">
+
+    </div>
+
+    <div class="product-info">
+
+        <h3>Modern Casual Wear</h3>
+
+        <div class="rating">
+            ★★★★★
+        </div>
+
+        <p class="price">
+            ₹2,499
+        </p>
+
+        <div class="product-buttons">
+
+            <button class="wishlist-btn">
+                ❤️ Wishlist
+            </button>
+
+            <button class="cart-btn">
+                Add to Cart
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- PRODUCT CARD 4 -->
+<!-- ========================= -->
+
+<div class="product-card" data-category="accessories" data-price="1499">
+
+    <div class="product-image">
+
+        <img src="assets/images/products/bag-1.jpg"
+             alt="Luxury Handbag">
+
+        <span class="badge sale">
+            Sale
+        </span>
+
+    </div>
+
+    <div class="product-info">
+
+        <h3>Premium Handbag</h3>
+
+        <div class="rating">
+            ★★★★★
+        </div>
+
+        <p class="price">
+
+            <del>₹1,999</del>
+
+            ₹1,499
+
+        </p>
+
+        <div class="product-buttons">
+
+            <button class="wishlist-btn">
+                ❤️ Wishlist
+            </button>
+
+            <button class="cart-btn">
+                Add to Cart
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- ========================= -->
+<!-- PRODUCT CARD 5 -->
+<!-- ========================= -->
+
+<div class="product-card" data-category="bridal" data-price="9999">
+
+    <div class="product-image">
+
+        <img src="assets/images/products/bridal-2.jpg"
+             alt="Royal Bridal Lehenga">
+
+        <span class="badge bestseller">
+            Best Seller
+        </span>
+
+    </div>
+
+    <div class="product-info">
+
+        <h3>Royal Bridal Lehenga</h3>
+
+        <div class="rating">
+            ★★★★★
+        </div>
+
+        <p class="price">
+            ₹9,999
+        </p>
+
+        <div class="product-buttons">
+
+            <button class="wishlist-btn">
+                ❤️ Wishlist
+            </button>
+
+            <button class="cart-btn">
+                Add to Cart
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ========================= -->
+<!-- PRODUCT CARD 6 -->
+<!-- ========================= -->
+
+<div class="product-card" data-category="evening" data-price="5499">
+
+    <div class="product-image">
+
+        <img src="assets/images/products/evening-2.jpg"
+             alt="Luxury Evening Gown">
+
+    </div>
+
+    <div class="product-info">
+
+        <h3>Luxury Evening Gown</h3>
+
+        <div class="rating">
+            ★★★★★
+        </div>
+
+        <p class="price">
+            ₹5,499
+        </p>
+
+        <div class="product-buttons">
+
+            <button class="wishlist-btn">
+                ❤️ Wishlist
+            </button>
+
+            <button class="cart-btn">
+                Add to Cart
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ========================= -->
+<!-- PRODUCT CARD 7 -->
+<!-- ========================= -->
+
+<div class="product-card" data-category="casual" data-price="2999">
+
+    <div class="product-image">
+
+        <img src="assets/images/products/casual-2.jpg"
+             alt="Designer Casual Outfit">
+
+        <span class="badge">
+            Trending
+        </span>
+
+    </div>
+
+    <div class="product-info">
+
+        <h3>Designer Casual Outfit</h3>
+
+        <div class="rating">
+            ★★★★☆
+        </div>
+
+        <p class="price">
+            ₹2,999
+        </p>
+
+        <div class="product-buttons">
+
+            <button class="wishlist-btn">
+                ❤️ Wishlist
+            </button>
+
+            <button class="cart-btn">
+                Add to Cart
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ========================= -->
+<!-- PRODUCT CARD 8 -->
+<!-- ========================= -->
+
+<div class="product-card" data-category="accessories" data-price="3499">
+
+    <div class="product-image">
+
+        <img src="assets/images/products/shoes-1.jpg"
+             alt="Luxury Heels">
+
+        <span class="badge sale">
+            20% OFF
+        </span>
+
+    </div>
+
+    <div class="product-info">
+
+        <h3>Luxury Designer Heels</h3>
+
+        <div class="rating">
+            ★★★★★
+        </div>
+
+        <p class="price">
+
+            <del>₹4,299</del>
+
+            ₹3,499
+
+        </p>
+
+        <div class="product-buttons">
+
+            <button class="wishlist-btn">
+                ❤️ Wishlist
+            </button>
+
+            <button class="cart-btn">
+                Add to Cart
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- ========================= -->
+<!-- PRODUCT CARD 9 -->
+<!-- ========================= -->
+
+<div class="product-card" data-category="bridal" data-price="11999">
+
+    <div class="product-image">
+
+        <img src="assets/images/products/bridal-3.jpg"
+             alt="Premium Bridal Dress">
+
+        <span class="badge">
+            Premium
+        </span>
+
+    </div>
+
+    <div class="product-info">
+
+        <h3>Premium Bridal Dress</h3>
+
+        <div class="rating">
+            ★★★★★
+        </div>
+
+        <p class="price">
+            ₹11,999
+        </p>
+
+        <div class="product-buttons">
+
+            <button class="wishlist-btn">
+                ❤️ Wishlist
+            </button>
+
+            <button class="cart-btn">
+                Add to Cart
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ========================= -->
+<!-- PRODUCT CARD 10 -->
+<!-- ========================= -->
+
+<div class="product-card" data-category="evening" data-price="6499">
+
+    <div class="product-image">
+
+        <img src="assets/images/products/evening-3.jpg"
+             alt="Luxury Party Wear">
+
+    </div>
+
+    <div class="product-info">
+
+        <h3>Luxury Party Wear</h3>
+
+        <div class="rating">
+            ★★★★★
+        </div>
+
+        <p class="price">
+            ₹6,499
+        </p>
+
+        <div class="product-buttons">
+
+            <button class="wishlist-btn">
+                ❤️ Wishlist
+            </button>
+
+            <button class="cart-btn">
+                Add to Cart
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ========================= -->
+<!-- PRODUCT CARD 11 -->
+<!-- ========================= -->
+
+<div class="product-card" data-category="casual" data-price="3299">
+
+    <div class="product-image">
+
+        <img src="assets/images/products/casual-3.jpg"
+             alt="Designer Casual Collection">
+
+    </div>
+
+    <div class="product-info">
+
+        <h3>Designer Casual Collection</h3>
+
+        <div class="rating">
+            ★★★★☆
+        </div>
+
+        <p class="price">
+            ₹3,299
+        </p>
+
+        <div class="product-buttons">
+
+            <button class="wishlist-btn">
+                ❤️ Wishlist
+            </button>
+
+            <button class="cart-btn">
+                Add to Cart
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ========================= -->
+<!-- PRODUCT CARD 12 -->
+<!-- ========================= -->
+
+<div class="product-card" data-category="accessories" data-price="2299">
+
+    <div class="product-image">
+
+        <img src="assets/images/products/accessory-1.jpg"
+             alt="Luxury Fashion Accessories">
+
+    </div>
+
+    <div class="product-info">
+
+        <h3>Luxury Accessories Set</h3>
+
+        <div class="rating">
+            ★★★★★
+        </div>
+
+        <p class="price">
+            ₹2,299
+        </p>
+
+        <div class="product-buttons">
+
+            <button class="wishlist-btn">
+                ❤️ Wishlist
+            </button>
+
+            <button class="cart-btn">
+                Add to Cart
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+    </div>
+
+</section>
+
+<!-- ========================= -->
+<!-- FEATURED COLLECTION -->
+<!-- ========================= -->
+
+<section class="featured-collection">
+
+    <div class="featured-content">
+
+        <span class="featured-tag">
+            NEW SEASON
+        </span>
+
+        <h2>
+            Autumn Luxury Collection
+        </h2>
+
+        <p>
+            Discover handcrafted designer outfits made with premium fabrics,
+            elegant silhouettes and timeless fashion.
+        </p>
+
+        <a href="#products" class="hero-btn">
+            Explore Collection
+        </a>
+
+    </div>
+
+</section>
+<!-- ========================= -->
+<!-- WHY CHOOSE US -->
+<!-- ========================= -->
+
+<section class="features">
+
+    <div class="feature-card">
+
+        <div class="feature-icon">🚚</div>
+
+        <h3>Free Shipping</h3>
+
+        <p>
+            Free delivery on eligible orders across India.
+        </p>
+
+    </div>
+
+    <div class="feature-card">
+
+        <div class="feature-icon">💳</div>
+
+        <h3>Secure Payment</h3>
+
+        <p>
+            Safe and
+          <!-- ========================= -->
+<!-- FOOTER -->
+<!-- ========================= -->
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <!-- Brand -->
+        <div class="footer-column">
+
+            <h2 class="footer-logo">
+                Velora Atelier
+            </h2>
+
+            <p>
+                Luxury fashion crafted with elegance, premium fabrics,
+                and timeless design for every special occasion.
+            </p>
+
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-column">
+
+            <h3>Quick Links</h3>
+
+            <ul>
+
+                <li><a href="index.html">Home</a></li>
+
+                <li><a href="shop
+                  <!-- ========================= -->
+<!-- SEARCH MODAL -->
+<!-- ========================= -->
+
+<div id="searchModal" class="modal">
+
+    <div class="modal-content">
+
+        <span class="close-modal" id="closeSearch">&times;</span>
+
+        <h2>Search Products</h2>
+
+        <input
+            type="text"
+            id="modalSearchInput"
+            placeholder="Search for dresses, accessories...">
+
+    </div>
+
+</div>
+
+<!-- ========================= -->
+<!-- SHOPPING CART SIDEBAR -->
+<!-- ========================= -->
+
+<aside id="cartSidebar" class="sidebar">
+
+    <div class="sidebar-header">
+
+        <h2>Shopping Cart</h2>
+
+        <button id="closeCart">
+            ✕
+        </button>
+
+    </div>
+
+    <div id="cartItems">
+
+        <p>Your cart is empty.</p>
+
+    </div>
+
+    <div class="sidebar-footer">
+
+        <h3>
+            Total:
+            <span id="cartTotal">
+                ₹0
+            </span>
+        </h    
