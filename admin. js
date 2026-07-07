@@ -1,0 +1,332 @@
+// ==========================================
+// VELORA ATELIER
+// admin.js
+// Main Admin Controller
+// ==========================================
+
+
+
+// =============================
+// ADMIN SESSION CHECK
+// =============================
+
+
+let adminLoggedIn =
+localStorage.getItem(
+"adminLogin"
+);
+
+
+
+if(!adminLoggedIn){
+
+
+    // For demo mode
+    // remove this redirect while testing
+
+
+    localStorage.setItem(
+        "adminLogin",
+        "true"
+    );
+
+
+}
+
+
+
+
+// =============================
+// SIDEBAR NAVIGATION
+// =============================
+
+
+const sidebarItems =
+document.querySelectorAll(
+".sidebar li"
+);
+
+
+
+sidebarItems.forEach(item=>{
+
+
+item.addEventListener(
+"click",
+()=>{
+
+
+    sidebarItems.forEach(
+    i=>
+    i.classList.remove(
+    "active"
+    ));
+
+
+    item.classList.add(
+    "active"
+    );
+
+
+
+    console.log(
+
+    "Opened:",
+    item.innerText
+
+    );
+
+
+
+});
+
+
+});
+
+
+
+
+// =============================
+// LOGOUT
+// =============================
+
+
+const logoutBtn =
+document.getElementById(
+"logoutBtn"
+);
+
+
+
+if(logoutBtn){
+
+
+logoutBtn.addEventListener(
+"click",
+()=>{
+
+
+    localStorage.removeItem(
+    "adminLogin"
+    );
+
+
+    alert(
+    "Logged out successfully"
+    );
+
+
+    location.reload();
+
+
+});
+
+
+}
+
+
+
+
+// =============================
+// SEARCH SYSTEM
+// =============================
+
+
+function searchTable(
+inputId,
+tableId
+){
+
+
+const input =
+document.getElementById(
+inputId
+);
+
+
+
+const table =
+document.getElementById(
+tableId
+);
+
+
+
+if(!input || !table)
+return;
+
+
+
+input.addEventListener(
+"keyup",
+()=>{
+
+
+let value =
+input.value
+.toLowerCase();
+
+
+
+let rows =
+table
+.getElementsByTagName(
+"tr"
+);
+
+
+
+for(
+let i=0;
+i<rows.length;
+i++
+){
+
+
+let text =
+rows[i]
+.innerText
+.toLowerCase();
+
+
+
+rows[i].style.display =
+text.includes(value)
+?
+""
+:
+"none";
+
+
+}
+
+
+
+});
+
+
+}
+
+
+
+
+// =============================
+// DASHBOARD DATE
+// =============================
+
+
+function showAdminDate(){
+
+
+const dateBox =
+document.getElementById(
+"adminDate"
+);
+
+
+
+if(dateBox){
+
+
+dateBox.innerText =
+new Date()
+.toLocaleDateString(
+"en-IN"
+);
+
+
+}
+
+
+
+}
+
+
+
+
+// =============================
+// REFRESH DASHBOARD
+// =============================
+
+
+function refreshDashboard(){
+
+
+if(typeof renderOrders==="function"){
+
+    renderOrders();
+
+}
+
+
+
+if(typeof updateStats==="function"){
+
+    updateStats();
+
+}
+
+
+
+if(typeof renderProducts==="function"){
+
+    renderProducts();
+
+}
+
+
+
+if(typeof updateProductCount==="function"){
+
+    updateProductCount();
+
+}
+
+
+
+}
+
+
+
+
+// =============================
+// AUTO REFRESH
+// =============================
+
+
+setInterval(
+()=>{
+
+
+refreshDashboard();
+
+
+},
+5000
+);
+
+
+
+
+// =============================
+// INITIAL LOAD
+// =============================
+
+
+document.addEventListener(
+"DOMContentLoaded",
+()=>{
+
+
+showAdminDate();
+
+
+refreshDashboard();
+
+
+console.log(
+"Velora Admin Dashboard Ready ✔"
+);
+
+
+});
