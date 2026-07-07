@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+Velora Atelier | Checkout
+
+</title>
+
+<meta name="description"
+content="Luxury Fashion Checkout">
+
+<link rel="stylesheet"
+href="style.css">
+
+<link rel="stylesheet"
+href="checkout.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header class="checkout-header">
+
+<div class="logo">
+
+Velora Atelier
+
+</div>
+
+<nav>
+
+<a href="index.html">
+
+Home
+
+</a>
+
+<a href="shop.html">
+
+Shop
+
+</a>
+
+<a href="checkout.html"
+class="active">
+
+Checkout
+
+</a>
+
+</nav>
+
+</header>
+
+<!-- HERO -->
+
+<section class="checkout-hero">
+
+<div class="overlay"></div>
+
+<div class="hero-content">
+
+<h1>
+
+Secure Checkout
+
+</h1>
+
+<p>
+
+Complete your luxury fashion purchase securely.
+
+</p>
+
+</div>
+
+</section>
+
+<!-- MAIN -->
+
+<main class="checkout-container">
+
+<!-- CUSTOMER DETAILS -->
+
+<section class="checkout-card">
+
+<h2>
+
+Customer Information
+
+</h2>
+
+<form id="checkoutForm">
+<!-- ========================= -->
+<!-- SHIPPING ADDRESS -->
+<!-- ========================= -->
+
+<div class="input-group">
+
+    <label>
+
+        Street Address
+
+    </label>
+
+    <input
+        type="text"
+        id="address"
+        placeholder="House No., Street, Area"
+        required>
+
+</div>
+
+<div class="input-group">
+
+    <label>
+
+        Apartment / Landmark (Optional)
+
+    </label>
+
+    <input
+        type="text"
+        id="landmark"
+        placeholder="Apartment, Landmark">
+
+</div>
+
+<div class="input-row">
+
+    <div class="input-group">
+
+        <label>
+
+            City
+
+        </label>
+
+        <input
+            type="text"
+            id="city"
+            placeholder="Enter City"
+            required>
+
+    </div>
+
+    <div class="input-group">
+
+        <label>
+
+            State
+
+        </label>
+
+        <input
+            type="text"
+            id="state"
+            placeholder="Enter State"
+            required>
+
+    </div>
+
+</div>
+
+<div class="input-row">
+
+    <div class="input-group">
+
+        <label>
+
+            PIN Code
+
+        </label>
+
+        <input
+            type="text"
+            id="pincode"
+            placeholder="6-digit PIN Code"
+            maxlength="6"
+            required>
+
+    </div>
+
+    <div class="input-group">
+
+        <label>
+
+            Country
+
+        </label>
+
+        <select id="country" required>
+
+            <option value="India">
+                India
+            </option>
+
+            <option value="Nepal">
+                Nepal
+            </option>
+
+            <option value="Bangladesh">
+                Bangladesh
+            </option>
+
+            <option value="Bhutan">
+                Bhutan
+            </option>
+
+        </select>
+
+    </div>
+
+</div>
+
+<div class="input-group">
+
+    <label>
+
+        Order Notes (Optional)
+
+    </label>
+
+    <textarea
+        id="notes"
+        rows="4"
+        placeholder="Any special delivery instructions?"></textarea>
+
+</div>
+
+</form>
+
+</section>
+<div class="input-group">
+
+<label>
+
+Full Name
+
+</label>
+
+<input
+type="text"
+id="fullName"
+placeholder="Enter your full name"
+required>
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Email Address
+
+</label>
+
+<input
+type="email"
+id="email"
+placeholder="Enter your email"
+required>
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Phone Number
+
+</label>
+
+<input
+type="tel"
+id="phone"
+placeholder="+91 XXXXX XXXXX"
+required>
+
+</div>
+<!-- ========================= -->
+<!-- DELIVERY OPTIONS -->
+<!-- ========================= -->
+
+<section class="checkout-card">
+
+    <h2>
+
+        Delivery Method
+
+    </h2>
+
+    <div class="delivery-options">
+
+        <label class="option-card">
+
+            <input
+                type="radio"
+                name="delivery"
+                value="standard"
+                checked>
+
+            <div>
+
+                <h3>Standard Delivery</h3>
+
+                <p>3–5 Business Days</p>
+
+                <strong>Free</strong>
+
+            </div>
+
+        </label>
+
+        <label class="option-card">
+
+            <input
+                type="radio"
+                name="delivery"
+                value="express">
+
+            <div>
+
+                <h3>Express Delivery</h3>
+
+                <p>1–2 Business Days</p>
+
+                <strong>₹199</strong>
+
+            </div>
+
+        </label>
+
+    </div>
+
+</section>
+
+<!-- ========================= -->
+<!-- PAYMENT METHODS -->
+<!-- ========================= -->
+
+<section class="checkout-card">
+
+    <h2>
+
+        Payment Method
+
+    </h2>
+
+    <div class="payment-options">
+
+        <label class="option-card">
+
+            <input
+                type="radio"
+                name="payment"
+                value="cod"
+                checked>
+
+            <div>
+
+                <h3>Cash on Delivery</h3>
+
+                <p>Pay when your order arrives.</p>
+
+            </div>
+
+        </label>
+
+        <label class="option-card">
+
+            <input
+                type="radio"
+                name="payment"
+                value="upi">
+
+            <div>
+
+                <h3>UPI Payment</h3>
+
+                <p>Google Pay, PhonePe, Paytm & more.</p>
+
+            </div>
+
+        </label>
+
+        <label class="option-card">
+
+            <input
+                type="radio"
+                name="payment"
+                value="card">
+
+            <div>
+
+                <h3>Credit / Debit Card</h3>
+
+                <p>Visa, MasterCard, RuPay.</p>
+
+            </div>
+
+        </label>
+
+        <label class="option-card">
+
+            <input
+                type="radio"
+                name="payment"
+                value="razorpay">
+
+            <div>
+
+                <h3>Razorpay</h3>
+
+                <p>Secure online payment gateway.</p>
+
+            </div>
+
+        </label>
+
+    </div>
+
+</section>
+<!-- ========================= -->
+<!-- ORDER SUMMARY -->
+<!-- ========================= -->
+
+<aside class="checkout-card order-summary">
+
+    <h2>
+
+        Order Summary
+
+    </h2>
+
+    <!-- Products -->
+
+    <div id="orderItems">
+
+        <div class="empty-order">
+
+            <p>
+
+                No products added yet.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <hr>
+
+    <!-- Price Details -->
+
+    <div class="summary-row">
+
+        <span>
+
+            Subtotal
+
+        </span>
+
+        <span id="subtotalPrice">
+
+            ₹0
+
+        </span>
+
+    </div>
+
+    <div class="summary-row">
+
+        <span>
+
+            Shipping
+
+        </span>
+
+        <span id="shippingPrice">
+
+            Free
+
+        </span>
+
+    </div>
+
+    <div class="summary-row">
+
+        <span>
+
+            Discount
+
+        </span>
+
+        <span id="discountPrice">
+
+            ₹0
+
+        </span>
+
+    </div>
+
+    <hr>
+
+    <div class="summary-total">
+
+        <span>
+
+            Grand Total
+
+        </span>
+
+        <strong id="grandTotal">
+
+            ₹0
+
+        </strong>
+
+    </div>
+
+</aside>
+<!-- ========================= -->
+<!-- COUPON SECTION -->
+<!-- ========================= -->
+
+<section class="checkout-card">
+
+    <h2>
+        Apply Coupon
+    </h2>
+
+    <div class="coupon-box">
+
+        <input
+            type="text"
+            id="couponCode"
+            placeholder="Enter coupon code">
+
+        <button
+            type="button"
+            id="applyCoupon">
+            Apply
+        </button>
+
+    </div>
+
+    <p class="coupon-note">
+        Try demo code:
+        <strong>WELCOME10</strong>
+        for 10% discount.
+    </p>
+
+</section>
+
+<!-- ========================= -->
+<!-- TERMS & PLACE ORDER -->
+<!-- ========================= -->
+
+<section class="checkout-card">
+
+    <label class="terms-box">
+
+        <input
+            type="checkbox"
+            id="acceptTerms"
+            required>
+
+        <span>
+            I agree to the Terms & Conditions and Privacy Policy.
+        </span>
+
+    </label>
+
+    <button
+        id="placeOrderBtn"
+        class="hero-btn">
+
+        Place Order
+
+    </button>
+
+    <div class="secure-checkout">
+
+        🔒 Secure Checkout Protected with SSL Encryption
+
+    </div>
+
+</section>
+<!-- ========================= -->
+<!-- ORDER SUCCESS MODAL -->
+<!-- ========================= -->
+
+<div id="successModal" class="success-modal">
+
+    <div class="success-content">
+
+        <div class="success-icon">
+            ✅
+        </div>
+
+        <h2>
+            Order Placed Successfully!
+        </h2>
+
+        <p>
+            Thank you for shopping with
+            <strong>Velora Atelier</strong>.
+        </p>
+
+        <p>
+            Your Order ID:
+            <strong id="orderId">
+                VA000000
+            </strong>
+        </p>
+
+        <p>
+            A confirmation email will be sent after your payment is verified.
+        </p>
+
+        <div class="success-buttons">
+
+            <a href="shop.html" class="hero-btn">
+                Continue Shopping
+            </a>
+
+            <a href="orders.html" class="hero-btn secondary-btn">
+                View Orders
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</main>
+
+<!-- ========================= -->
+<!-- JAVASCRIPT FILES -->
+<!-- ========================= -->
+
+<script src="script.js"></script>
+<script src="shop.js"></script>
+<script src="checkout.js"></script>
+<script src="payment.js"></script>
+
+<!-- Firebase (Optional) -->
+<!--
+<script type="module" src="firebase.js"></script>
+-->
+
+</body>
+</html>
