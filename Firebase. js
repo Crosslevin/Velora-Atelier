@@ -22,17 +22,17 @@ from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 const firebaseConfig = {
 
-apiKey: "YOUR_API_KEY",
+apiKey: "AIzaSyCBKEhU7Zho-78V-aQ1YoNbxdnDDncjSlI",
 
-authDomain: "YOUR_PROJECT.firebaseapp.com",
+authDomain: "velora-atelier.firebaseapp.com,
 
-projectId: "YOUR_PROJECT_ID",
+projectId: "velora-atelier",
 
-storageBucket: "YOUR_PROJECT.appspot.com",
+storageBucket: "velora-atelier.firebasestorage.app",
 
-messagingSenderId:"YOUR_SENDER_ID",
+messagingSenderId:"691773380744",
 
-appId:"YOUR_APP_ID"
+appId:"1:691773380744:web:f4808130185b231f7ea73d"
 
 };
 
