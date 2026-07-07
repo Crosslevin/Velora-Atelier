@@ -601,3 +601,79 @@ cartItems.addEventListener("click", (e) => {
 renderCart();
 
 console.log("Quantity Controls Ready");
+// ==========================================
+// VELORA ATELIER SHOP.JS
+// PART 2A.3
+// Remove Item + Live Total
+// ==========================================
+
+// =============================
+// Remove Product
+// =============================
+
+cartItems.addEventListener("click", (e) => {
+
+    if (!e.target.classList.contains("remove-btn")) return;
+
+    const index = Number(e.target.dataset.index);
+
+    if (index < 0 || index >= cart.length) return;
+
+    cart.splice(index, 1);
+
+    saveCart();
+
+    updateCounts();
+
+    renderCart();
+
+});
+
+
+// =============================
+// Calculate Total
+// =============================
+
+function calculateCartTotal() {
+
+    return cart.reduce((total, item) => {
+
+        return total + (item.price * item.quantity);
+
+    }, 0);
+
+}
+
+
+// =============================
+// Update Total
+// =============================
+
+function updateCartTotal() {
+
+    cartTotal.textContent =
+        `₹${calculateCartTotal().toLocaleString("en-IN")}`;
+
+}
+
+
+// =============================
+// Refresh Cart UI
+// =============================
+
+const oldRenderCart = renderCart;
+
+renderCart = function () {
+
+    oldRenderCart();
+
+    updateCartTotal();
+
+};
+
+
+// Initial Refresh
+
+updateCartTotal();
+
+console.log("Remove Item & Live Total Ready");
