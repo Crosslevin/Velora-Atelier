@@ -1,0 +1,563 @@
+// ==========================================
+// VELORA ATELIER
+// orders.js
+// PART 1A
+// Load Orders System
+// ==========================================
+
+
+// =============================
+// Get Orders Container
+// =============================
+
+const ordersList =
+document.getElementById(
+"ordersList"
+);
+
+
+
+// =============================
+// Load Orders From Storage
+// =============================
+
+let orders =
+JSON.parse(
+localStorage.getItem("orders")
+)
+|| [];
+
+
+
+// =============================
+// Format Date
+// =============================
+
+function formatDate(date){
+
+    return new Date(date)
+    .toLocaleDateString(
+        "en-IN",
+        {
+            day:"2-digit",
+            month:"short",
+            year:"numeric"
+        }
+    );
+
+}
+
+
+
+// =============================
+// Empty Orders
+// =============================
+
+function showEmptyOrders(){
+
+
+    ordersList.innerHTML = `
+
+    <div class="empty-orders">
+
+        <h3>
+        No Orders Yet
+        </h3>
+
+        <p>
+        Start shopping to see your orders here.
+        </p>
+
+        <a href="shop.html">
+        Explore Collection
+        </a>
+
+    </div>
+
+    `;
+
+
+}
+
+
+
+// =============================
+// Check Orders
+// =============================
+
+function checkOrders(){
+
+
+    if(!ordersList)
+    return;
+
+
+
+    if(orders.length===0){
+
+        showEmptyOrders();
+
+        return;
+
+    }
+
+
+
+    renderOrders();
+
+
+}
+
+
+
+// =============================
+// Initialize
+// =============================
+
+checkOrders();
+
+
+console.log(
+"Orders System Loaded ✔"
+);
+// ==========================================
+// VELORA ATELIER
+// orders.js
+// PART 1B
+// Dynamic Order Rendering
+// ==========================================
+
+
+// =============================
+// Render Orders
+// =============================
+
+function renderOrders(){
+
+
+    ordersList.innerHTML = "";
+
+
+
+    orders
+    .reverse()
+    .forEach(order=>{
+
+
+        const card =
+        document.createElement(
+        "div"
+        );
+
+
+        card.className =
+        "order-card";
+
+
+
+        let productsHTML = "";
+
+
+
+        order.products.forEach(
+        product=>{
+
+
+            productsHTML += `
+
+            <div class="product-item">
+
+
+                <img
+                src="${product.image}"
+                alt="${product.name}">
+
+
+                <div class="product-info">
+
+
+                    <h4>
+                    ${product.name}
+                    </h4>
+
+
+                    <p>
+                    Quantity:
+                    ${product.quantity}
+                    </p>
+
+
+                </div>
+
+
+
+                <strong>
+                ₹${(
+                product.price *
+                product.quantity
+                ).toLocaleString("en-IN")}
+                </strong>
+
+
+            </div>
+
+            `;
+
+
+        });
+
+
+
+        card.innerHTML = `
+
+
+        <div class="order-header">
+
+
+            <div>
+
+                <h3>
+                Order #${order.id}
+                </h3>
+
+
+                <p>
+                ${formatDate(order.date)}
+                </p>
+
+
+            </div>
+
+
+
+            <span class="status-badge">
+
+                ${order.status || "Confirmed"}
+
+            </span>
+
+
+        </div>
+
+
+
+
+        <div class="order-products">
+
+            ${productsHTML}
+
+        </div>
+
+
+
+
+        <div class="order-price">
+
+
+            <div>
+
+                <span>
+                Subtotal
+                </span>
+
+                <strong>
+                ₹${order.subtotal.toLocaleString("en-IN")}
+                </strong>
+
+            </div>
+
+
+
+            <div>
+
+                <span>
+                Shipping
+                </span>
+
+                <strong>
+                ${
+                order.shipping === 0
+                ?
+                "Free"
+                :
+                "₹"+order.shipping
+                }
+                </strong>
+
+            </div>
+
+
+
+
+            <div class="total-price">
+
+                <span>
+                Total
+                </span>
+
+                <strong>
+                ₹${order.total.toLocaleString("en-IN")}
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+
+
+        <div class="payment-status">
+
+
+            <p>
+            Payment:
+            <span>
+            ${order.paymentStatus || "Pending"}
+            </span>
+            </p>
+
+
+        </div>
+
+
+
+
+        <div class="order-actions">
+
+
+            <button
+            class="view-order"
+            data-id="${order.id}">
+
+            View Details
+
+            </button>
+
+
+
+            <button
+            class="buy-again"
+            data-id="${order.id}">
+
+            Buy Again
+
+            </button>
+
+
+        </div>
+
+
+
+        `;
+
+
+
+        ordersList.appendChild(card);
+
+
+
+    });
+
+
+
+}
+// ==========================================
+// VELORA ATELIER
+// orders.js
+// PART 1C
+// Order Actions
+// ==========================================
+
+
+
+// =============================
+// View Order Details
+// =============================
+
+document.addEventListener(
+"click",
+(e)=>{
+
+
+    if(
+    e.target.classList.contains(
+    "view-order"
+    )
+    ){
+
+
+        const id =
+        e.target.dataset.id;
+
+
+
+        const order =
+        orders.find(
+        item=>item.id===id
+        );
+
+
+
+        if(order){
+
+
+            alert(
+
+            "Order ID: "
+            + order.id
+            +
+            "\nTotal: ₹"
+            + order.total
+            +
+            "\nStatus: "
+            + order.status
+
+            );
+
+
+        }
+
+
+    }
+
+
+
+});
+
+
+
+
+// =============================
+// Buy Again
+// =============================
+
+document.addEventListener(
+"click",
+(e)=>{
+
+
+    if(
+    e.target.classList.contains(
+    "buy-again"
+    )
+    ){
+
+
+        const id =
+        e.target.dataset.id;
+
+
+
+        const order =
+        orders.find(
+        item=>item.id===id
+        );
+
+
+
+        if(!order)
+        return;
+
+
+
+        let cart =
+        JSON.parse(
+        localStorage.getItem("cart")
+        )
+        || [];
+
+
+
+        order.products.forEach(
+        product=>{
+
+
+            const existing =
+            cart.find(
+            item=>
+            item.name === product.name
+            );
+
+
+
+            if(existing){
+
+
+                existing.quantity +=
+                product.quantity;
+
+
+            }
+
+            else{
+
+
+                cart.push(
+                product
+                );
+
+
+            }
+
+
+        });
+
+
+
+        localStorage.setItem(
+
+            "cart",
+
+            JSON.stringify(cart)
+
+        );
+
+
+
+        alert(
+        "Products added back to cart!"
+        );
+
+
+
+        window.location.href =
+        "shop.html";
+
+
+
+    }
+
+
+});
+
+
+
+
+// =============================
+// Refresh Orders On Return
+// =============================
+
+window.addEventListener(
+"storage",
+()=>{
+
+
+    orders =
+    JSON.parse(
+    localStorage.getItem("orders")
+    )
+    || [];
+
+
+
+    renderOrders();
+
+
+});
+
+
+
+console.log(
+"Order Actions Ready ✔"
+);
