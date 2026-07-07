@@ -477,3 +477,645 @@ updateCheckoutTotal();
 console.log(
 "Coupon System Ready ✔"
 );
+// ==========================================
+// VELORA ATELIER
+// checkout.js
+// PART 2A
+// Form Validation
+// ==========================================
+
+
+// =============================
+// Form Elements
+// =============================
+
+const checkoutForm =
+document.getElementById("checkoutForm");
+
+
+// =============================
+// Inputs
+// =============================
+
+const fullName =
+document.getElementById("fullName");
+
+const email =
+document.getElementById("email");
+
+const phone =
+document.getElementById("phone");
+
+const pincode =
+document.getElementById("pincode");
+
+const acceptTerms =
+document.getElementById("acceptTerms");
+
+
+
+// =============================
+// Error Message
+// =============================
+
+function showError(input,message){
+
+    input.classList.add(
+        "input-error"
+    );
+
+
+    let error =
+    input.parentElement
+    .querySelector(".error-message");
+
+
+    if(!error){
+
+        error =
+        document.createElement("small");
+
+        error.className =
+        "error-message";
+
+        input.parentElement
+        .appendChild(error);
+
+    }
+
+
+    error.textContent =
+    message;
+
+}
+
+
+
+function clearError(input){
+
+    input.classList.remove(
+        "input-error"
+    );
+
+
+    const error =
+    input.parentElement
+    .querySelector(".error-message");
+
+
+    if(error){
+
+        error.remove();
+
+    }
+
+}
+
+
+
+// =============================
+// Email Validation
+// =============================
+
+function validEmail(value){
+
+return /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+.test(value);
+
+}
+
+
+
+// =============================
+// Phone Validation
+// =============================
+
+function validPhone(value){
+
+return /^[6-9]\d{9}$/
+.test(value);
+
+}
+
+
+
+// =============================
+// PIN Validation
+// =============================
+
+function validPin(value){
+
+return /^\d{6}$/
+.test(value);
+
+}
+
+
+
+// =============================
+// Validate Form
+// =============================
+
+function validateForm(){
+
+
+let valid = true;
+
+
+
+if(fullName.value.trim().length < 3){
+
+showError(
+fullName,
+"Enter a valid name"
+);
+
+valid=false;
+
+}else{
+
+clearError(fullName);
+
+}
+
+
+
+if(!validEmail(email.value)){
+
+showError(
+email,
+"Enter valid email"
+);
+
+valid=false;
+
+}else{
+
+clearError(email);
+
+}
+
+
+
+if(!validPhone(phone.value)){
+
+showError(
+phone,
+"Enter valid 10 digit phone number"
+);
+
+valid=false;
+
+}else{
+
+clearError(phone);
+
+}
+
+
+
+if(!validPin(pincode.value)){
+
+showError(
+pincode,
+"Enter valid 6 digit PIN code"
+);
+
+valid=false;
+
+}else{
+
+clearError(pincode);
+
+}
+
+
+
+if(!acceptTerms.checked){
+
+alert(
+"Please accept Terms & Conditions"
+);
+
+valid=false;
+
+}
+
+
+
+return valid;
+
+}
+
+
+
+// =============================
+// Remove Error While Typing
+// =============================
+
+[
+fullName,
+email,
+phone,
+pincode
+].forEach(input=>{
+
+
+if(input){
+
+input.addEventListener(
+"input",
+()=>{
+
+clearError(input);
+
+});
+
+}
+
+
+});
+
+
+
+console.log(
+"Form Validation Ready ✔"
+);
+// ==========================================
+// VELORA ATELIER
+// checkout.js
+// PART 2B
+// Order Creation + Storage
+// ==========================================
+
+
+// =============================
+// Generate Order ID
+// =============================
+
+function generateOrderId(){
+
+    const random =
+    Math.floor(
+    100000 +
+    Math.random()*900000
+    );
+
+    return "VA" + random;
+
+}
+
+
+
+// =============================
+// Create Order Object
+// =============================
+
+function createOrder(){
+
+
+    const order = {
+
+
+        id:
+        generateOrderId(),
+
+
+        customer:{
+
+
+            name:
+            fullName.value.trim(),
+
+
+            email:
+            email.value.trim(),
+
+
+            phone:
+            phone.value.trim(),
+
+
+            address:
+            document.getElementById(
+            "address"
+            ).value.trim(),
+
+
+            city:
+            document.getElementById(
+            "city"
+            ).value.trim(),
+
+
+            state:
+            document.getElementById(
+            "state"
+            ).value.trim(),
+
+
+            pincode:
+            pincode.value.trim()
+
+
+        },
+
+
+        products:
+        checkoutCart,
+
+
+        subtotal:
+        calculateSubtotal(),
+
+
+        shipping:
+        calculateShipping(),
+
+
+        discount:
+        discountAmount,
+
+
+        total:
+        Math.max(
+
+        calculateSubtotal()
+        +
+        calculateShipping()
+        -
+        discountAmount,
+
+        0
+
+        ),
+
+
+        coupon:
+        appliedCoupon,
+
+
+        payment:
+        document.querySelector(
+        'input[name="payment"]:checked'
+        )?.value || "cod",
+
+
+        date:
+        new Date()
+        .toISOString()
+
+
+    };
+
+
+    return order;
+
+}
+
+
+
+// =============================
+// Save Order
+// =============================
+
+function saveOrder(order){
+
+
+    let orders =
+    JSON.parse(
+    localStorage.getItem("orders")
+    )
+    || [];
+
+
+    orders.push(order);
+
+
+    localStorage.setItem(
+    "orders",
+    JSON.stringify(orders)
+    );
+
+
+}
+
+
+
+// =============================
+// Clear Cart
+// =============================
+
+function clearCartAfterOrder(){
+
+    localStorage.removeItem(
+    "cart"
+    );
+
+
+    checkoutCart=[];
+
+}
+
+
+
+// =============================
+// Submit Order Handler
+// =============================
+
+if(checkoutForm){
+
+
+checkoutForm.addEventListener(
+"submit",
+(e)=>{
+
+e.preventDefault();
+
+
+if(!validateForm()){
+
+return;
+
+}
+
+
+
+const order =
+createOrder();
+
+
+
+saveOrder(order);
+
+
+clearCartAfterOrder();
+
+
+
+localStorage.setItem(
+"lastOrder",
+JSON.stringify(order)
+);
+
+
+
+openSuccessModal(
+order.id
+);
+
+
+
+});
+
+}
+
+
+
+console.log(
+"Order System Ready ✔"
+);
+// ==========================================
+// VELORA ATELIER
+// checkout.js
+// PART 2C
+// Success Modal + Final Setup
+// ==========================================
+
+
+// =============================
+// Success Modal Elements
+// =============================
+
+const successModal =
+document.getElementById(
+"successModal"
+);
+
+
+const orderIdText =
+document.getElementById(
+"orderId"
+);
+
+
+
+// =============================
+// Open Success Modal
+// =============================
+
+function openSuccessModal(orderId){
+
+
+    if(orderIdText){
+
+        orderIdText.textContent =
+        orderId;
+
+    }
+
+
+    if(successModal){
+
+        successModal.classList.add(
+        "active"
+        );
+
+    }
+
+
+    resetCheckoutForm();
+
+
+}
+
+
+
+// =============================
+// Reset Form
+// =============================
+
+function resetCheckoutForm(){
+
+
+    if(checkoutForm){
+
+        checkoutForm.reset();
+
+    }
+
+
+    discountAmount=0;
+
+    appliedCoupon="";
+
+
+}
+
+
+
+// =============================
+// Close Modal On Outside Click
+// =============================
+
+if(successModal){
+
+
+successModal.addEventListener(
+"click",
+(e)=>{
+
+
+    if(
+    e.target === successModal
+    ){
+
+        successModal.classList.remove(
+        "active"
+        );
+
+    }
+
+
+});
+
+
+}
+
+
+
+// =============================
+// Back Button Protection
+// =============================
+
+window.addEventListener(
+"pageshow",
+()=>{
+
+
+    checkoutCart =
+    JSON.parse(
+    localStorage.getItem("cart")
+    )
+    || [];
+
+
+    renderOrderItems();
+
+
+});
+
+
+
+// =============================
+// Final Initialize
+// =============================
+
+renderOrderItems();
+
+updateCheckoutTotal();
+
+
+console.log(
+"Velora Checkout System Loaded Successfully ✔"
+);
