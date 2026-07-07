@@ -501,3 +501,24 @@ updateProductCount();
 console.log(
 "Admin Product System Loaded ✔"
 );
+import {
+
+uploadProductImage
+
+}
+
+from "./firebase-storage.js";
+const file =
+productImageFile.files[0];
+
+
+let imageURL="";
+
+
+if(file){
+
+imageURL =
+await uploadProductImage(file);
+
+}
+image:imageURL
