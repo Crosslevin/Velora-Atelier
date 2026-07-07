@@ -1,0 +1,1247 @@
+/* ==========================================
+   VELORA ATELIER - SHOP.CSS
+   PART 1A
+========================================== */
+
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Reset */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#0b0b0b;
+    color:#ffffff;
+    overflow-x:hidden;
+}
+
+/* Variables */
+
+:root{
+
+    --gold:#d4af37;
+    --black:#0b0b0b;
+    --dark:#141414;
+    --gray:#999999;
+    --white:#ffffff;
+
+    --shadow:
+    0 10px 30px rgba(0,0,0,.35);
+
+    --radius:18px;
+
+}
+
+/* Links */
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+img{
+    display:block;
+    width:100%;
+}
+
+button{
+
+    cursor:pointer;
+    border:none;
+
+}
+
+/* =========================
+      HEADER
+========================= */
+
+.shop-header{
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+  /* ==========================================
+   VELORA ATELIER - SHOP.CSS
+   PART 1B
+========================================== */
+
+/* =========================
+      SHOP TOOLBAR
+========================= */
+
+.shop-toolbar{
+
+    width:100%;
+
+    padding:45px 7%;
+
+    background:#111;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+}
+
+.search-box{
+
+    flex:1;
+
+    min-width:260px;
+
+}
+
+.search-box input{
+
+    width:100%;
+
+    height:55px;
+
+    padding:0 20px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:50px;
+
+    background:#1c1c1c;
+
+    color:#fff;
+
+    font-size:15px;
+
+}
+
+.search-box input::placeholder{
+
+    color:#888;
+
+}
+
+.toolbar-right{
+
+    display:flex;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+}
+
+.toolbar-right select{
+
+    min-width:180px;
+
+    height:55px;
+
+    padding:0 18px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:50px;
+
+    background:#1c1c1c;
+
+    color:#fff;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.toolbar-right select:hover{
+
+    border:1px solid var(--gold);
+
+}
+
+/* =========================
+      SHOP INTRO
+========================= */
+
+.shop-intro{
+
+    text-align:center;
+
+    padding:80px 7% 40px;
+
+}
+   font-size:20px;
+
+}
+
+.product-buttons{
+
+    flex-direction:column;
+
+}
+
+}
+  /* ==========================================
+   VELORA ATELIER - SHOP.CSS
+   PART 1C
+========================================== */
+
+/* =========================
+      PRODUCT CARD
+========================= */
+
+.product-card{
+
+    background:#151515;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.35);
+
+    transition:.35s ease;
+
+    position:relative;
+
+}
+
+.product-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 18px 40px rgba(212,175,55,.18);
+
+}
+
+.product-image{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.product-image img{
+
+    width:100%;
+
+    height:380px;
+
+    object-fit:cover;
+
+    transition:.5s;
+
+}
+
+.product-card:hover .product-image img{
+
+    transform:scale(1.08);
+
+}
+
+/* =========================
+      BADGES
+========================= */
+
+.badge{
+
+    position:absolute;
+
+    top:15px;
+
+    left:15px;
+
+    background:var(--gold);
+
+    color:#000;
+
+    padding:8px 14px;
+
+    border-radius:30px;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    text-transform:uppercase;
+
+}
+
+.badge.sale{
+
+    background:#e53935;
+
+    color:#fff;
+
+}
+
+.badge.bestseller{
+
+    background:#00c853;
+
+    color:#fff;
+
+}
+
+/* =========================
+      PRODUCT INFO
+========================= */
+
+.product-info{
+
+    padding:22px;
+
+}
+
+.product-info h3{
+
+    font-family:'Playfair Display',serif;
+
+    font-size:24px;
+
+    margin-bottom:12px;
+
+    color:#fff;
+
+}
+
+.rating{
+
+    color:#FFD54F;
+
+    font-size:16px;
+
+    margin-bottom:14px;
+
+    letter-spacing:2px;
+
+}
+
+.price{
+
+    font-size:22px;
+
+    font-weight:700;
+
+    color:var(--gold);
+
+    margin-bottom:20px;
+
+}
+
+.price del{
+
+    color:#777;
+
+    margin-right:10px;
+
+    font-size:16px;
+
+}
+
+/* =========================
+      BUTTONS
+========================= */
+
+.product-buttons{
+
+    display:flex;
+
+    gap:12px;
+
+}
+
+.product-buttons button{
+
+    flex:1;
+
+    padding:12px;
+
+    border-radius:10px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.wishlist-btn{
+
+    background:#242424;
+
+    color:#fff;
+
+}
+
+.wishlist-btn:hover{
+
+    background:#ff4d6d;
+
+}
+
+.cart-btn{
+
+    background:var(--gold);
+
+    color:#000;
+
+}
+
+.cart-btn:hover{
+
+    filter:brightness(1.08);
+
+}
+
+/* =========================
+      MOBILE
+========================= */
+
+@media(max-width:768px){
+
+.product-image img{
+
+    height:300px;
+
+}
+
+.product-info h3{
+
+    font-size:21px;
+
+}
+
+.price{
+
+    font-size:20px;
+
+}
+
+.product-buttons{
+
+    flex-direction:column;
+
+}
+
+}
+/* ==========================================
+   VELORA ATELIER - SHOP.CSS
+   PART 2A
+========================================== */
+
+/* =========================
+      FEATURED COLLECTION
+========================= */
+
+.featured-collection{
+
+    margin:80px 7%;
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+    position:relative;
+
+    min-height:500px;
+
+    background:
+    linear-gradient(
+    rgba(0,0,0,.55),
+    rgba(0,0,0,.75)
+    ),
+    url("assets/images/featured-banner.jpg")
+    center/cover no-repeat;
+
+    display:flex;
+
+    align-items:center;
+
+}
+
+.featured-content{
+
+    max-width:600px;
+
+    padding:70px;
+
+}
+
+.featured-tag{
+
+    display:inline-block;
+
+    background:var(--gold);
+
+    color:#000;
+
+    padding:8px 20px;
+
+    border-radius:30px;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    margin-bottom:20px;
+
+    letter-spacing:1px;
+
+}
+
+.featured-content h2{
+
+    font-family:'Playfair Display',serif;
+
+    font-size:55px;
+
+    color:#fff;
+
+    margin-bottom:20px;
+
+}
+
+.featured-content p{
+
+    color:#ddd;
+
+    line-height:1.8;
+
+    margin-bottom:35px;
+
+    font-size:17px;
+
+}
+
+/* =========================
+      FEATURES
+========================= */
+
+.features{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(250px,1fr));
+
+    gap:30px;
+
+    padding:90px 7%;
+
+}
+
+.feature-card{
+
+    background:#161616;
+
+    border-radius:20px;
+
+    padding:40px 30px;
+
+    text-align:center;
+
+    transition:.35s;
+
+    border:1px solid rgba(255,255,255,.05);
+
+}
+
+.feature-card:hover{
+
+    transform:translateY(-8px);
+
+    border-color:var(--gold);
+
+    box-shadow:0 15px 35px rgba(212,175,55,.15);
+
+}
+
+.feature-icon{
+
+    font-size:48px;
+
+    margin-bottom:20px;
+
+}
+
+.feature-card h3{
+
+    color:var(--gold);
+
+    font-size:24px;
+
+    margin-bottom:15px;
+
+    font-family:'Playfair Display',serif;
+
+}
+
+.feature-card p{
+
+    color:#bbb;
+
+    line-height:1.7;
+
+}
+
+/* =========================
+      RESPONSIVE
+========================= */
+
+@media(max-width:768px){
+
+.featured-content{
+
+    padding:40px 25px;
+
+}
+
+.featured-content h2{
+
+    font-size:36px;
+
+}
+
+.featured-collection{
+
+    min-height:420px;
+
+}
+
+}
+/* ==========================================
+   VELORA ATELIER - SHOP.CSS
+   PART 2B
+========================================== */
+
+/* =========================
+      INSTAGRAM SECTION
+========================= */
+
+.instagram-section{
+
+    padding:100px 7%;
+
+    text-align:center;
+
+    background:#101010;
+
+}
+
+.instagram-section h2{
+
+    font-family:'Playfair Display',serif;
+
+    color:var(--gold);
+
+    font-size:42px;
+
+    margin-bottom:15px;
+
+}
+
+.instagram-section p{
+
+    color:#bbbbbb;
+
+    margin-bottom:45px;
+
+    font-size:17px;
+
+}
+
+.instagram-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:20px;
+
+}
+
+.instagram-grid img{
+
+    width:100%;
+
+    height:280px;
+
+    object-fit:cover;
+
+    border-radius:18px;
+
+    transition:.4s;
+
+    cursor:pointer;
+
+}
+
+.instagram-grid img:hover{
+
+    transform:scale(1.05);
+
+    box-shadow:0 15px 35px rgba(212,175,55,.25);
+
+}
+
+/* =========================
+      NEWSLETTER
+========================= */
+
+.newsletter{
+
+    padding:100px 7%;
+
+    background:#0b0b0b;
+
+}
+
+.newsletter-content{
+
+    max-width:750px;
+
+    margin:auto;
+
+    background:#151515;
+
+    border:1px solid rgba(212,175,55,.15);
+
+    border-radius:25px;
+
+    padding:60px 40px;
+
+    text-align:center;
+
+}
+
+.newsletter-content h2{
+
+    font-family:'Playfair Display',serif;
+
+    font-size:40px;
+
+    color:var(--gold);
+
+    margin-bottom:15px;
+
+}
+
+.newsletter-content p{
+
+    color:#cccccc;
+
+    margin-bottom:35px;
+
+    line-height:1.8;
+
+}
+
+#newsletterForm{
+
+    display:flex;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+}
+
+#newsletterEmail{
+
+    flex:1;
+
+    min-width:260px;
+
+    height:56px;
+
+    padding:0 20px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:50px;
+
+    background:#202020;
+
+    color:#ffffff;
+
+    font-size:15px;
+
+}
+
+#newsletterEmail::placeholder{
+
+    color:#888888;
+
+}
+
+#newsletterForm button{
+
+    height:56px;
+
+    padding:0 35px;
+
+    border:none;
+
+    border-radius:50px;
+
+    background:var(--gold);
+
+    color:#000;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+#newsletterForm button:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 10px 25px rgba(212,175,55,.30);
+
+}
+
+/* =========================
+      RESPONSIVE
+========================= */
+
+@media(max-width:768px){
+
+.instagram-section h2{
+
+    font-size:34px;
+
+}
+
+.newsletter-content{
+
+    padding:40px 25px;
+
+}
+
+.newsletter-content h2{
+
+    font-size:32px;
+
+}
+
+#newsletterForm{
+
+    flex-direction:column;
+
+}
+
+#newsletterEmail{
+
+    width:100%;
+
+}
+
+#newsletterForm button{
+
+    width:100%;
+
+}
+
+}
+/* ==========================================
+   VELORA ATELIER - SHOP.CSS
+   PART 2C
+========================================== */
+
+/* =========================
+      FOOTER
+========================= */
+
+.footer{
+
+    background:#050505;
+
+    padding:80px 7% 30px;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+}
+
+.footer-container{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:40px;
+
+}
+
+.footer-logo{
+
+    font-family:'Playfair Display',serif;
+
+    font-size:34px;
+
+    color:var(--gold);
+
+    margin-bottom:20px;
+
+}
+
+.footer-column h3{
+
+    color:var(--gold);
+
+    margin-bottom:20px;
+
+    font-size:22px;
+
+}
+
+.footer-column p{
+
+    color:#bdbdbd;
+
+    line-height:1.8;
+
+}
+
+.footer-column ul{
+
+    list-style:none;
+
+}
+
+.footer-column li{
+
+    margin-bottom:12px;
+
+}
+
+.footer-column a{
+
+    color:#bdbdbd;
+
+    transition:.3s;
+
+}
+
+.footer-column a:hover{
+
+    color:var(--gold);
+
+}
+
+.footer-social{
+
+    margin-top:50px;
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:18px;
+
+}
+
+.footer-social a{
+
+    width:50px;
+
+    height:50px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:#161616;
+
+    border-radius:50%;
+
+    font-size:22px;
+
+    transition:.3s;
+
+}
+
+.footer-social a:hover{
+
+    background:var(--gold);
+
+    color:#000;
+
+}
+
+.footer-bottom{
+
+    text-align:center;
+
+    margin-top:35px;
+
+    color:#888;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+    padding-top:20px;
+
+}
+
+/* =========================
+      SEARCH MODAL
+========================= */
+
+.modal{
+
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.75);
+
+    z-index:3000;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.modal-content{
+
+    width:90%;
+
+    max-width:600px;
+
+    background:#151515;
+
+    padding:35px;
+
+    border-radius:20px;
+
+    position:relative;
+
+}
+
+.modal-content h2{
+
+    color:var(--gold);
+
+    margin-bottom:20px;
+
+    font-family:'Playfair Display',serif;
+
+}
+
+.modal-content input{
+
+    width:100%;
+
+    height:55px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:10px;
+
+    background:#222;
+
+    color:#fff;
+
+    padding:0 18px;
+
+}
+
+.close-modal{
+
+    position:absolute;
+
+    top:15px;
+
+    right:20px;
+
+    font-size:28px;
+
+    cursor:pointer;
+
+}
+
+/* =========================
+      SIDEBARS
+========================= */
+
+.sidebar{
+
+    position:fixed;
+
+    top:0;
+
+    right:-420px;
+
+    width:380px;
+
+    max-width:100%;
+
+    height:100vh;
+
+    background:#111;
+
+    transition:.35s;
+
+    z-index:3500;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.sidebar.active{
+
+    right:0;
+
+}
+
+.sidebar-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:25px;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+}
+
+.sidebar-header h2{
+
+    color:var(--gold);
+
+}
+
+.sidebar-header button{
+
+    background:none;
+
+    color:#fff;
+
+    font-size:26px;
+
+}
+
+#cartItems,
+#wishlistItems{
+
+    flex:1;
+
+    overflow-y:auto;
+
+    padding:20px;
+
+    color:#ddd;
+
+}
+
+.sidebar-footer{
+
+    padding:20px;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+}
+
+.sidebar-footer h3{
+
+    margin-bottom:20px;
+
+    color:var(--gold);
+
+}
+
+/* =========================
+      SCROLLBAR
+========================= */
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#111;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:var(--gold);
+
+    border-radius:20px;
+
+}
+
+/* =========================
+      MOBILE
+========================= */
+
+@media(max-width:768px){
+
+.footer{
+
+    padding:60px 5% 25px;
+
+}
+
+.footer-logo{
+
+    font-size:28px;
+
+}
+
+.sidebar{
+
+    width:100%;
+
+}
+
+.modal-content{
+
+    padding:25px;
+
+}
+
+}
