@@ -1,0 +1,937 @@
+// ==========================================
+// VELORA ATELIER
+// payment.js
+// PART 1A
+// Razorpay Setup
+// ==========================================
+
+
+// =============================
+// Razorpay Configuration
+// =============================
+
+const razorpayKey =
+"YOUR_RAZORPAY_KEY_ID";
+
+
+// =============================
+// Payment Button
+// =============================
+
+const placeOrderBtn =
+document.getElementById(
+"placeOrderBtn"
+);
+
+
+// =============================
+// Get Last Order
+// =============================
+
+function getCurrentOrder(){
+
+    return JSON.parse(
+        localStorage.getItem(
+        "lastOrder"
+        )
+    );
+
+}
+
+
+
+// =============================
+// Payment Method
+// =============================
+
+function getPaymentMethod(){
+
+    const payment =
+    document.querySelector(
+    'input[name="payment"]:checked'
+    );
+
+
+    return payment
+    ? payment.value
+    : "cod";
+
+}
+
+
+
+// =============================
+// Check Razorpay Script
+// =============================
+
+function isRazorpayLoaded(){
+
+    return typeof Razorpay !== "undefined";
+
+}
+
+
+
+// =============================
+// Add Razorpay Script
+// =============================
+
+function loadRazorpay(){
+
+
+return new Promise((resolve)=>{
+
+
+    if(isRazorpayLoaded()){
+
+        resolve(true);
+
+        return;
+
+    }
+
+
+    const script =
+    document.createElement(
+    "script"
+    );
+
+
+    script.src =
+    "https://checkout.razorpay.com/v1/checkout.js";
+
+
+    script.onload=()=>{
+
+        resolve(true);
+
+    };
+
+
+    script.onerror=()=>{
+
+        resolve(false);
+
+    };
+
+
+    document.body.appendChild(
+    script
+    );
+
+
+});
+
+
+}
+
+
+
+console.log(
+"Payment Setup Loaded ✔"
+);
+// ==========================================
+// VELORA ATELIER
+// payment.js
+// PART 1B
+// Payment Trigger System
+// ==========================================
+
+
+// =============================
+// Place Order Button Event
+// =============================
+
+if(placeOrderBtn){
+
+
+placeOrderBtn.addEventListener(
+"click",
+async ()=>{
+
+
+    const method =
+    getPaymentMethod();
+
+
+
+    // Cash On Delivery
+
+    if(method === "cod"){
+
+
+        processCOD();
+
+
+        return;
+
+
+    }
+
+
+
+    // Online Payment
+
+    if(
+    method === "razorpay" ||
+    method === "upi" ||
+    method === "card"
+    ){
+
+
+        const loaded =
+        await loadRazorpay();
+
+
+
+        if(!loaded){
+
+            alert(
+            "Payment gateway failed to load."
+            );
+
+            return;
+
+        }
+
+
+
+        openRazorpay();
+
+
+    }
+
+
+});
+
+
+}
+
+
+
+// =============================
+// COD Process
+// =============================
+
+function processCOD(){
+
+
+    const order =
+    getCurrentOrder();
+
+
+
+    if(!order){
+
+        alert(
+        "Order data not found."
+        );
+
+        return;
+
+    }
+
+
+
+    order.paymentStatus =
+    "COD - Pending";
+
+
+
+    order.status =
+    "Order Confirmed";
+
+
+
+    localStorage.setItem(
+    "lastOrder",
+    JSON.stringify(order)
+    );
+
+
+
+    showPaymentSuccess(
+    order.id
+    );
+
+
+}
+
+
+
+// =============================
+// Razorpay Checkout
+// =============================
+
+function openRazorpay(){
+
+
+    const order =
+    getCurrentOrder();
+
+
+
+    if(!order){
+
+        alert(
+        "Order not found."
+        );
+
+        return;
+
+    }
+
+
+
+    const options = {
+
+
+        key:
+        razorpayKey,
+
+
+        amount:
+        order.total * 100,
+
+
+        currency:
+        "INR",
+
+
+        name:
+        "Velora Atelier",
+
+
+        description:
+        "Luxury Fashion Purchase",
+
+
+        image:
+        "assets/logo.png",
+
+
+
+        prefill:{
+
+
+            name:
+            order.customer.name,
+
+
+            email:
+            order.customer.email,
+
+
+            contact:
+            order.customer.phone
+
+
+        },
+
+
+
+        theme:{
+
+
+            color:
+            "#D4AF37"
+
+
+        },
+
+
+
+        handler:function(response){
+
+
+            paymentSuccess(
+            response,
+            order
+            );
+
+
+        },
+
+
+
+        modal:{
+
+
+            ondismiss:function(){
+
+
+                console.log(
+                "Payment Cancelled"
+                );
+
+
+            }
+
+
+        }
+
+
+
+    };
+
+
+
+    const razorpay =
+    new Razorpay(options);
+
+
+
+    razorpay.open();
+
+
+}
+
+
+
+console.log(
+"Payment Trigger Ready ✔"
+);
+// ==========================================
+// VELORA ATELIER
+// payment.js
+// PART 1C
+// Success + Failure Handling
+// ==========================================
+
+
+// =============================
+// Payment Success
+// =============================
+
+function paymentSuccess(
+response,
+order
+){
+
+
+    order.paymentStatus =
+    "Paid";
+
+
+    order.paymentId =
+    response.razorpay_payment_id;
+
+
+    order.status =
+    "Order Confirmed";
+
+
+
+    savePaymentOrder(
+    order
+    );
+
+
+
+    showPaymentSuccess(
+    order.id
+    );
+
+
+}
+
+
+
+// =============================
+// Save Payment Order
+// =============================
+
+function savePaymentOrder(order){
+
+
+    let orders =
+    JSON.parse(
+    localStorage.getItem("orders")
+    )
+    || [];
+
+
+
+    const index =
+    orders.findIndex(
+    item=>item.id===order.id
+    );
+
+
+
+    if(index !== -1){
+
+        orders[index]=order;
+
+    }else{
+
+        orders.push(order);
+
+    }
+
+
+
+    localStorage.setItem(
+    "orders",
+    JSON.stringify(orders)
+    );
+
+
+
+    localStorage.setItem(
+    "lastOrder",
+    JSON.stringify(order)
+    );
+
+
+}
+
+
+
+// =============================
+// Payment Failed
+// =============================
+
+function paymentFailed(error){
+
+
+    console.log(
+    "Payment Error:",
+    error
+    );
+
+
+    alert(
+    "Payment failed. Please try again."
+    );
+
+
+}
+
+
+
+// =============================
+// Universal Success UI
+// =============================
+
+function showPaymentSuccess(orderId){
+
+
+    const modal =
+    document.getElementById(
+    "successModal"
+    );
+
+
+    const idText =
+    document.getElementById(
+    "orderId"
+    );
+
+
+
+    if(idText){
+
+        idText.textContent =
+        orderId;
+
+    }
+
+
+
+    if(modal){
+
+        modal.classList.add(
+        "active"
+        );
+
+    }
+
+
+}
+
+
+
+// =============================
+// Razorpay Error Listener
+// =============================
+
+window.addEventListener(
+"unhandledrejection",
+(event)=>{
+
+    paymentFailed(
+    event.reason
+    );
+
+});
+
+
+
+console.log(
+"Payment Result Handler Ready ✔"
+);
+// ==========================================
+// VELORA ATELIER
+// payment.js
+// PART 2A
+// Payment Records + Order History
+// ==========================================
+
+
+// =============================
+// Save Payment Record
+// =============================
+
+function savePaymentRecord(data){
+
+    let payments =
+    JSON.parse(
+        localStorage.getItem("payments")
+    )
+    || [];
+
+
+    payments.push(data);
+
+
+    localStorage.setItem(
+        "payments",
+        JSON.stringify(payments)
+    );
+
+}
+
+
+
+// =============================
+// Create Payment Record
+// =============================
+
+function createPaymentRecord(
+order,
+paymentId
+){
+
+    return {
+
+        orderId:
+        order.id,
+
+        paymentId:
+        paymentId,
+
+        amount:
+        order.total,
+
+        currency:
+        "INR",
+
+        customer:
+        order.customer.name,
+
+        status:
+        "Success",
+
+        method:
+        order.payment,
+
+        createdAt:
+        new Date()
+        .toISOString()
+
+    };
+
+}
+
+
+
+// =============================
+// Enhanced Payment Success
+// =============================
+
+function completePayment(
+response,
+order
+){
+
+
+    const paymentRecord =
+    createPaymentRecord(
+        order,
+        response.razorpay_payment_id
+    );
+
+
+
+    savePaymentRecord(
+        paymentRecord
+    );
+
+
+
+    order.paymentDetails =
+    paymentRecord;
+
+
+
+    savePaymentOrder(
+        order
+    );
+
+
+
+    showPaymentSuccess(
+        order.id
+    );
+
+
+}
+
+
+
+// =============================
+// Check Existing Payment
+// =============================
+
+function isPaymentCompleted(
+orderId
+){
+
+
+    const payments =
+    JSON.parse(
+        localStorage.getItem("payments")
+    )
+    || [];
+
+
+
+    return payments.some(
+        payment =>
+        payment.orderId === orderId
+    );
+
+
+}
+
+
+
+// =============================
+// Prevent Duplicate Payment
+// =============================
+
+function checkDuplicatePayment(
+order
+){
+
+
+    if(
+    isPaymentCompleted(order.id)
+    ){
+
+        alert(
+        "Payment already completed."
+        );
+
+        return true;
+
+    }
+
+
+    return false;
+
+}
+
+
+
+console.log(
+"Payment Records System Ready ✔"
+);
+// ==========================================
+// VELORA ATELIER
+// payment.js
+// PART 2B
+// Final Initialization
+// ==========================================
+
+
+// =============================
+// Final Razorpay Success Handler
+// =============================
+
+function handleSuccessfulPayment(
+response
+){
+
+    const order =
+    getCurrentOrder();
+
+
+
+    if(!order){
+
+        alert(
+        "Order information missing."
+        );
+
+        return;
+
+    }
+
+
+
+    if(
+    checkDuplicatePayment(order)
+    ){
+
+        return;
+
+    }
+
+
+
+    completePayment(
+        response,
+        order
+    );
+
+
+}
+
+
+
+// =============================
+// Payment Button State
+// =============================
+
+function setButtonLoading(
+state
+){
+
+    if(!placeOrderBtn)
+    return;
+
+
+
+    if(state){
+
+        placeOrderBtn.classList.add(
+        "loading"
+        );
+
+        placeOrderBtn.disabled=true;
+
+
+    }else{
+
+
+        placeOrderBtn.classList.remove(
+        "loading"
+        );
+
+        placeOrderBtn.disabled=false;
+
+    }
+
+}
+
+
+
+// =============================
+// Safe Payment Start
+// =============================
+
+async function startPayment(){
+
+
+    try{
+
+
+        setButtonLoading(true);
+
+
+
+        const loaded =
+        await loadRazorpay();
+
+
+
+        if(!loaded){
+
+            throw new Error(
+            "Razorpay not loaded"
+            );
+
+        }
+
+
+
+        openRazorpay();
+
+
+
+    }
+
+    catch(error){
+
+
+        console.log(
+        error
+        );
+
+
+        alert(
+        "Unable to start payment."
+        );
+
+
+    }
+
+    finally{
+
+
+        setButtonLoading(false);
+
+
+    }
+
+
+}
+
+
+
+// =============================
+// Cleanup Old Data
+// =============================
+
+function clearTemporaryPaymentData(){
+
+
+    sessionStorage.removeItem(
+    "paymentSession"
+    );
+
+
+}
+
+
+
+// =============================
+// Initialize Payment System
+// =============================
+
+document.addEventListener(
+"DOMContentLoaded",
+()=>{
+
+
+    clearTemporaryPaymentData();
+
+
+    console.log(
+    "Velora Payment System Initialized ✔"
+    );
+
+
+});
